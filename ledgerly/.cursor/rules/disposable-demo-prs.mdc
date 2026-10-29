@@ -1,0 +1,22 @@
+---
+description: Name presenting PRs so they are obviously disposable later
+alwaysApply: true
+---
+
+# Disposable demo PRs
+
+When you open a pull request against this demo as part of presenting (runbooks, field demos, Grok Build beats), name the **PR title and branch** so a later cleanup pass can delete them without guessing.
+
+Do not use production-looking titles (`feat:`, `fix:`, a ticket id alone) for those PRs.
+
+```markdown
+# ❌ BAD — looks like a real ship
+feat: add customer email editor on invoices
+fix/filter-pills
+
+# ✅ GOOD — obvious throwaway
+[demo-delete-me] add customer email editor on invoices
+demo/delete-me-filter-pills
+```
+
+Prefix the title with `[demo-delete-me]` (or equivalent) and put `demo/delete-me-` on the branch. This does not change whether you open a PR — only how you name presenting ones.
