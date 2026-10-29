@@ -6,7 +6,7 @@ Chat prompt:
 /multitask @resolve-dispute.md
 ```
 
-Coordinator behavior (no wrapper Task, first Tasks are the named workers, contract in each prompt) is `../../.cursor/rules/ledgerly-multitask.mdc`. Launch shape is `.cursor/skills/dispatch-subagents/SKILL.md`. Do not implement in the parent.
+Coordinator behavior (no wrapper Task, first Tasks are the named workers, contract in each prompt) is `.cursor/rules/multitask-no-wrapper.mdc`. Launch shape is `.cursor/skills/dispatch-subagents/SKILL.md`. Do not implement in the parent.
 
 ## Goal
 
@@ -14,7 +14,7 @@ Enable **Accept credit** and **Decline** on the dispute detail Resolution panel 
 
 Catalog only: Starter $49, Growth $99, Scale $249 (`lib/plans.ts`). Dispute `dsp_1043` may claim $400 against a $249 Scale invoice — valid input; stored credit on accept must be **$249**, not $400.
 
-`npm test` stays **1 failed / 33 passed** (`tests/suggested-credit-api.test.ts` only). Do not add a red suite to the default run. Do not touch suggested-credit client/tests, seed, or catalog prices.
+`npm test` stays **1 failed / 32 passed** (`tests/suggested-credit-api.test.ts` only). Do not add a red suite to the default run. Do not touch suggested-credit client/tests, seed, or catalog prices.
 
 ## Run order
 
@@ -22,7 +22,7 @@ Catalog only: Starter $49, Growth $99, Scale $249 (`lib/plans.ts`). Dispute `dsp
 
 This plan is not done until step 4:
 
-1. Same turn: launch Agent 1, Agent 2, and Agent 3 (tables below) on isolated worktrees. Exactly three implementers.
+1. Same turn: launch Agent 1, Agent 2, and Agent 3 (tables below) on isolated worktrees. Exactly three implementers. The three implementers use isolated worktrees; the coordinator does not enter them.
 2. When all three finish, summarize each worktree’s diff (paths must be disjoint) and apply **helper → API → UI**. A git conflict means an agent edited a sibling’s file — revert that hunk.
 3. Same turn after apply: `ledgerly-reviewer` on the combined diff **and** `dispute-verifier` against port 43173. They do not depend on each other. Do not serialize them. Verifier writes no product code.
 4. Finish line is **`dispute-verifier`**. Do not skip it. Optional `tests/resolve-dispute.e2e.test.ts` only in this same turn, **out of** `npm test`; skip it if the verifier already covers the live path.
@@ -73,7 +73,7 @@ Suggested credit on the page may still be v1 **$400**. Do not “fix” that in 
 | Agent 1 done | `resolveDispute` no longer throws `not implemented`. Accept cap / decline / missing id as in the contract. |
 | Agent 2 done | Bad `action` → 400. `grep`: no `prisma.` in the route. Valid body still calls `resolveDispute`. 501 until helper is applied. |
 | Agent 3 done | Buttons enabled. POST body is `{ action, reviewerNote }`. 501 until helper is applied is OK. |
-| After apply | Browser on `dsp_1043`. `npm test` still **1 failed / 33 passed**. Same turn: `ledgerly-reviewer` and **`dispute-verifier`**. |
+| After apply | Browser on `dsp_1043`. `npm test` still **1 failed / 32 passed**. Same turn: `ledgerly-reviewer` and **`dispute-verifier`**. |
 
 ---
 

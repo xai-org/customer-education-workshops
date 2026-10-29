@@ -1,0 +1,1128 @@
+<!doctype html>
+<!-- Generated from runbooks/meta.ts by `npm run runbooks:export`. Do not edit by hand. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ledgerly runbooks</title>
+  <style>
+    :root {
+      --indigo: #4f46e5;
+      --ink: #111827;
+      --ink-soft: #6b7280;
+      --paper: #f7f7fb;
+      --paper-elevated: #ffffff;
+      --line: #e5e7eb;
+      --indigo-soft: #eef2ff;
+      --muted: #f3f4f6;
+      --success: #059669;
+      --radius: 0.625rem;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .eyebrow { margin: 0; color: var(--indigo); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    h1 { margin: 0.25rem 0 0.25rem; font-size: 1.5rem; }
+    .lede { margin: 0.25rem 0 0; max-width: 48rem; color: var(--ink-soft); font-size: 0.8125rem; }
+    label { display: block; margin: 1.5rem 0 0.375rem; font-size: 0.75rem; font-weight: 500; }
+    select {
+      height: 2.25rem; min-width: 12rem; padding: 0 0.75rem;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--paper-elevated); color: var(--ink); font: inherit;
+    }
+    h2 { margin: 1.5rem 0 0; font-size: 1.25rem; }
+    .tabs { display: flex; gap: 0.5rem; overflow-x: auto; margin: 1rem 0 0.5rem; padding-bottom: 0.25rem; }
+    .tabs a {
+      flex-shrink: 0; padding: 0.375rem 0.75rem;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--paper-elevated); color: var(--ink); text-decoration: none; font-size: 0.8125rem;
+    }
+    .tabs a:hover { border-color: var(--indigo); color: var(--indigo); }
+    section { margin-top: 2.5rem; scroll-margin-top: 1rem; }
+    h3 { margin: 0 0 0.75rem; font-size: 1.125rem; }
+    .beats { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+    .beat {
+      display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem;
+      border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-elevated);
+    }
+    h4 { margin: 0; font-size: 0.875rem; }
+    .say { margin: 0; color: var(--ink-soft); font-size: 0.75rem; white-space: pre-line; }
+    .do-box, pre {
+      margin: 0; padding: 0.75rem; overflow: auto;
+      border: 1px solid var(--line); border-radius: var(--radius);
+    }
+    .do-box {
+      background: var(--indigo-soft); color: var(--ink);
+      font: 0.75rem/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    .do-box ol, .do-box ul { margin: 0; padding-left: 1.25rem; }
+    .do-box li + li { margin-top: 0.25rem; }
+    .paste { margin-top: auto; }
+    .paste-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.75rem; font-weight: 500; }
+    .copy {
+      padding: 0.25rem 0.625rem; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--paper-elevated); color: var(--ink); font: inherit; cursor: pointer;
+    }
+    .copy.done { color: var(--success); border-color: var(--success); }
+    pre {
+      white-space: pre-wrap; background: var(--muted);
+      font: 0.75rem/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .track[hidden] { display: none; }
+    .feature-checklist {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+      margin: 1rem 0 0; padding: 0; border: 0;
+    }
+    .feature-checklist legend {
+      padding: 0; margin: 0 0.25rem 0 0;
+      font-size: 0.75rem; font-weight: 500; color: var(--ink);
+    }
+    .tabs a, label.feature-option {
+      flex-shrink: 0; display: flex; align-items: center; gap: 0.5rem;
+      margin: 0; padding: 0.375rem 0.75rem;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--paper-elevated); color: var(--ink);
+      font-size: 0.8125rem; font-weight: 400; text-decoration: none; cursor: pointer;
+    }
+    .feature-option input { width: 1rem; height: 1rem; margin: 0; accent-color: var(--indigo); }
+    .track[data-track="301"]:has(.feature-toggle[data-feature="Cloud Agents"]:not(:checked)) .beat[data-feature="Cloud Agents"] { display: none; }
+    .track[data-track="301"]:has(.feature-toggle[data-feature="Projects"]:not(:checked)) .beat[data-feature="Projects"] { display: none; }
+    .track[data-track="301"]:has(.feature-toggle[data-feature="Bugbot"]:not(:checked)) .beat[data-feature="Bugbot"] { display: none; }
+    .track[data-track="301"]:has(.feature-toggle[data-feature="Automations"]:not(:checked)) .beat[data-feature="Automations"] { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Demo catalog</p>
+    <h1>Runbooks</h1>
+    <p class="lede">Choose a track, jump to a section, and copy the next beat into Grok Build. Link a track directly with <code>?track=201</code> or <code>?track=301</code>.</p>
+    <label for="track">Catalog</label>
+    <select id="track">
+          <option value="101">101</option>
+          <option value="201">201</option>
+          <option value="301">301</option>
+    </select>
+
+    <div class="track" data-track="101">
+      <h2>101</h2>
+      <p class="lede">You will explore different ways to work in Grok Build, use modes and models for the right tasks, apply rules and skills to ensure consistent quality, and complete at least one task with an agent.</p>
+      <nav class="tabs" aria-label="101 sections">
+        <a href="#101-first-prompt">What is Grok Build?</a>
+        <a href="#101-work-with-agent">How do you work with an agent?</a>
+        <a href="#101-govern-agent">How do you govern an agent?</a>
+      </nav>
+      <section id="101-first-prompt">
+        <h3>What is Grok Build?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="ask">
+          <h4>Ask</h4>
+          <div class="do-box">
+            <ul><li>Let’s learn more about the application with Ask mode.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/ask Tell me what this application does in 3 sentences</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="plan">
+          <h4>Plan</h4>
+          <div class="do-box">
+            <ul><li>Map your approach to building a new feature in Plan mode.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/plan I want a new feature to update the customer email in the invoice detail customer card. Don’t implement email validation.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="agent-build">
+          <h4>Build in Agent mode</h4>
+          <div class="do-box">
+            <ul><li>Build the feature in Agent mode. Build the plan locally. Check the feature in the UI.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="debug">
+          <h4>Debug</h4>
+          <div class="do-box">
+            <ul><li>Investigate the failing test using Debug mode. Debug mode is useful because the agent investigates the codebase and presents some hypothesis on the root cause. I can choose to reproduce the bug and attempt to fix based on the agent’s hypotheses.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/debug the failing test</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="model-fast">
+          <h4>Check the models</h4>
+          <div class="do-box">
+            <ul><li>Check the models available for use. Select Auto in the chat and review the models available for use.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="fix">
+          <h4>Plan to fix the bug</h4>
+          <div class="do-box">
+            <ul><li>Use shift-tab to toggle to Agent mode.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Fix the failing test.</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="101-work-with-agent">
+        <h3>How do you work with an agent?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="allowlist">
+          <h4>Run Mode Allowlist</h4>
+          <div class="do-box">
+            <ul><li>Let’s change how our agent asks for approvals by configuring an allowlist - a known set of commands that Grok Build can run without asking for review. Go to Settings &gt; Agents &gt; Executions &amp; Approvals &gt; Run Mode &gt; Allowlist.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="verify-email">
+          <h4>Verify the email feature</h4>
+          <div class="do-box">
+            <ul><li>Go to http://localhost:43173/invoices/inv_1048. Find the edit email feature you implemented in the Customer box.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="start-and-stop">
+          <h4>Redact (partial)</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Redact the customer email in the UI. The first two characters and domain are plaintext. When I click to type in the box, clear it and save the new email.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="stop">
+          <h4>Stop the prompt</h4>
+          <div class="do-box">
+            <ul><li>Stop the prompt with the Stop button in the chat.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="interrupt-steer">
+          <h4>Interrupt and steer</h4>
+          <div class="do-box">
+            <ul><li>Steer the prompt. Show how the agent pauses for your approval. Continue running after reviewing the first file.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Redact the customer email in the UI. Show it in plaintext when I click the box to edit it. Stop every time you change a file for me to review.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="continue-no-approval">
+          <h4>Continue to the end</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Continue to the end, do not wait for my approval.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="diffs">
+          <h4>Review diffs</h4>
+          <div class="do-box">
+            <ul><li>Select Changes in the right hand panel. Show diffs from agent’s last turn.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="checkpoint-restore">
+          <h4>Restore from a checkpoint</h4>
+          <div class="do-box">
+            <ul><li>If I want to revert the code, I can restore from a checkpoint. Scroll back to a prompt before updating the feature. Select the restore icon next to the prompt.</li></ul>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="101-govern-agent">
+        <h3>How do you govern an agent?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="rule">
+          <h4>Create a user rule</h4>
+          <div class="do-box">
+            <ul><li>Let’s create a user rule so the agent doesn’t try to improve the invoice UI without our approval. Use /create-rule, a built-in skill, to create a rule. Go to Customize &gt; Rules &gt; User to view the rule.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/create-rule Preserve the invoice view. Do not rename, restyle, or rearrange invoice screens unless the user names the **exact** new copy (or a specific layout change). This is a personal rule.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="test-rule">
+          <h4>Test the rule</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Change &quot;Line Items&quot; in the UI to something else.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="skill">
+          <h4>Create a user skill</h4>
+          <div class="do-box">
+            <ul><li>Let’s create a user skill that tells me the domain breakdown and available APIs. Go to Customize &gt; Skills to view the skill.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/create-skill Use domain-driven design to break down the domains in this application and match it to available APIs or data schemas. This is a personal skill.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="test-skill">
+          <h4>Test the skill</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Use domain-driven design on this application. Do not edit files.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="canvas">
+          <h4>Canvas</h4>
+          <div class="do-box">
+            <ul><li>Use Canvas to generate interactive artifacts that render next to the chat.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Create a canvas explaining what we did today.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="mcp">
+          <h4>MCP / Figma</h4>
+          <div class="do-box">
+            <ul><li>Ask Grok Build to create a slideshow in Figma using MCP Servers. Find an MCP server for slideshow generation in Grok Build. Go to Customize &gt; MCPs &gt; Figma.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Create three slides in Figma Slides outlining how I used Grok Build to develop a new feature. I want to use this as part of my demo showcase.</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="track" data-track="201">
+      <h2>201</h2>
+      <p class="lede">You will curate what belongs in an agent&#39;s context, encode conventions as project skills, connect a curated set of MCP servers, and split one task across parallel agents.</p>
+      <nav class="tabs" aria-label="201 sections">
+        <a href="#201-target-context">How do you manage context?</a>
+        <a href="#201-standardize-agents">How do you standardize agents?</a>
+        <a href="#201-mcp-more-info">How do you connect external tools?</a>
+        <a href="#201-parallelize-task">How do you parallelize a task?</a>
+      </nav>
+      <section id="201-target-context">
+        <h3>How do you manage context?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="rename-agent-1-all">
+          <h4>Open one agent and ask it for information about the entire codebase.</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/rename-chat Agent 1 All</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="ask-ddd-all">
+          <h4>Ask DDD of the application</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/ask what is the domain driven design of the application.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="rename-agent-2-target">
+          <h4>Let’s open a second agent. This starts a new context window.</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/rename-chat Agent 2 Target</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="ask-ddd-invoice-table">
+          <h4>Ask DDD of the invoice table</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/ask what is the domain driven design of the @invoice-table.tsx</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="context-usage">
+          <h4>Check agent 1’s context window.</h4>
+          <div class="do-box">
+            <ul><li>Go to Agent 1 All chat. Click the Context Usage indicator below the chat. Agent 1 maps all the domains in the whole codebase. Its context window shows X%.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="compare-agents">
+          <h4>Check agent 2’s context window.</h4>
+          <div class="do-box">
+            <ul><li>Go to Agent 2 Target. Click the Context Usage indicator below the chat. Agent 2 maps half of the domains based on the targeted context. Its context window shows Y%. The difference in context window may not be significant but can affect larger repositories.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="ask-cross-context">
+          <h4>We want to check if the invoice table can be changed in isolation.</h4>
+          <div class="do-box">
+            <ul><li>Agent 1 did the work of identifying all domains. Agent 2 can benefit from its summary. It doesn’t need to review the entire codebase again. Go to Agent 2 Target chat.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/ask @Agent 1 All Does refactoring the table change anything across all contexts?</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="201-standardize-agents">
+        <h3>How do you standardize agents?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="create-api-personal-skill">
+          <h4>Open a new agent and add a new personal skill.</h4>
+          <div class="do-box">
+            <ul><li>Open a new agent. Every time I ask a new agent to create an API, it forgets how to do it and scans the entire repository for the pattern. Let’s create a skill for it so the agent can do less work. Open skill in ~/.cursor/skills.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/create-skill for how to create a new API. Follow the standards in this repo. This is a personal skill named create-api.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="promote-create-api-project">
+          <h4>Create a project skill.</h4>
+          <div class="do-box">
+            <ol><li>A teammate mentioned they were frustrated because they had to keep correcting the agent when it builds the API. They asked if they could also use the API skill.</li><li>Open skill in .cursor/skills</li><li>Review the other project skills for this repository, such as add-dashboard-widget, draft-collection-email, or write-prisma-query.</li></ol>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Promote the create-api skill to this project.</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="201-mcp-more-info">
+        <h3>How do you connect external tools?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="add-linear-mcp">
+          <h4>Start the MCP server for the company issue tracker.</h4>
+          <div class="do-box">
+            <ol><li>Let’s start the issue tracker’s MCP server. For this workshop, that is Linear. Get a ticket for this project.</li><li>Review MCP servers in Customize &gt; MCPs</li><li>Enable the Linear MCP server.</li></ol>
+          </div>
+        </article>
+        <article class="beat" data-beat="mcp-allowlist">
+          <h4>Check your allowed MCP servers.</h4>
+          <div class="do-box">
+            <ul><li>Go to Settings &gt; Agents &gt; Execution and Approvals &gt; Allowlist Options &gt; MCP Allowlist to check valid MCP servers and tools from your administrator.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="start-issue-agent">
+          <h4>Start a new agent.</h4>
+          <div class="do-box">
+            <ul><li>Open a new agent. Someone reported a bug and it was logged in our issue tracker. I want more information on it.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="ask-linear-bug">
+          <h4>Retrieve a bug ticket from the issue tracker.</h4>
+          <div class="do-box">
+            <ul><li>Review the tool calls to the Linear MCP server.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>List the open issues from our issue tracker.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="add-local-plugin">
+          <h4>Add the plugin.</h4>
+          <div class="do-box">
+            <ul><li>My teammate on another application let me know that they just created a plugin for standardizing and documenting bug fixes on our issue tracker. Go to Customize &gt; Plugins &gt; Add &gt; From Local Repository. Find the plugins/standard-bug-fix file directory and add it.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="check-plugin">
+          <h4>Enable the “Standard bug fix” plugin.</h4>
+          <div class="do-box">
+            <ul><li>Go to Customize &gt; Plugins. Go to Personal. Click Add to enable the “Standard bug fix” plugin. Show that the plugin has skills, rules, and MCP server.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="standard-bug-fix">
+          <h4>Fix the bug with the standard template.</h4>
+          <div class="do-box">
+            <ul><li>Let’s fix the bug and update the issue with the standard template. Go to the issue in Linear and review the comments following the bug template.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Work on a standard bug fix for the issue where clicking overdue does not filter.</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="201-parallelize-task">
+        <h3>How do you parallelize a task?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="open-new-agent">
+          <h4>Start a new agent.</h4>
+          <div class="do-box">
+            <ul><li>Open a new agent. I created a plan for a feature to resolve disputes, splitting the work across three agents.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="open-resolve-dispute-plan">
+          <h4>Split the plan for three parallel agents.</h4>
+          <div class="do-box">
+            <ul><li>Open .cursor/plans/resolve-dispute.md. Review the plan and how it splits data, API, and UI tasks.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="open-ledgerly-reviewer">
+          <h4>The plan uses custom subagents to control how changes are made.</h4>
+          <div class="do-box">
+            <ol><li>For any changes to the application, there is a reviewer subagent to check changes.</li><li>Open .cursor/agents/ledgerly-reviewer.md</li></ol>
+          </div>
+        </article>
+        <article class="beat" data-beat="open-dispatch-subagents-skill">
+          <h4>The plan has concrete steps for conflict resolution.</h4>
+          <div class="do-box">
+            <ul><li>Open .cursor/skills/dispatch-subagents/SKILL.md. This skill gives clear guidance to your agents that they should avoid making changes with conflicts.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="multitask-resolve-dispute">
+          <h4>Start multitasking.</h4>
+          <div class="do-box">
+            <ul><li>Build the feature using the /multitask command.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/multitask @resolve-dispute.md</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="canvas-subagent-progress">
+          <h4>Show the progress of subagents and tasks.</h4>
+          <div class="do-box">
+            <ul><li>Use Canvas to keep track of the progress of subagents and their tasks. Review Canvas with subagent progress and worktree conflicts.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Update Canvas with subagent progress and models used. Make a list of worktree conflicts as you encounter them.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="ledgerly-reviewer-check">
+          <h4>Verify the task completed with the subagent.</h4>
+          <div class="do-box">
+            <ul><li>Use the specialized reviewer subagent to check the completed task.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>ledgerly-reviewer check my work</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="track" data-track="301">
+      <h2>301</h2>
+      <p class="lede">You will orchestrate work across agents, tasks, and coworkers: break tasks down for multiple agents, take a plan through parallel agents to a reviewable PR, scale review when several streams finish, and share ownership safely.</p>
+      <fieldset class="feature-checklist">
+        <legend>Optional features</legend>
+        <label class="feature-option" for="feature-301-cloud-agents">
+          <input id="feature-301-cloud-agents" class="feature-toggle" type="checkbox" data-track="301" data-feature="Cloud Agents" checked>
+          Cloud Agents
+        </label>
+        <label class="feature-option" for="feature-301-projects">
+          <input id="feature-301-projects" class="feature-toggle" type="checkbox" data-track="301" data-feature="Projects" checked>
+          Projects
+        </label>
+        <label class="feature-option" for="feature-301-bugbot">
+          <input id="feature-301-bugbot" class="feature-toggle" type="checkbox" data-track="301" data-feature="Bugbot" checked>
+          Bugbot
+        </label>
+        <label class="feature-option" for="feature-301-automations">
+          <input id="feature-301-automations" class="feature-toggle" type="checkbox" data-track="301" data-feature="Automations" checked>
+          Automations
+        </label>
+      </fieldset>
+      <nav class="tabs" aria-label="301 sections">
+        <a href="#301-orchestrate-agents">How do you orchestrate agents?</a>
+        <a href="#301-plan-to-code">How do you go from plan to code?</a>
+        <a href="#301-scale-review">How do you scale review?</a>
+        <a href="#301-share-ownership">How do you share ownership safely?</a>
+      </nav>
+      <section id="301-orchestrate-agents">
+        <h3>How do you orchestrate agents?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="optional-cloud-command-center" data-feature="Cloud Agents">
+          <h4>Plan the command center on a Cloud Agent.</h4>
+          <p class="say">This plan runs on a remote machine, so it keeps going while I do the keyboard walkthrough locally.</p>
+          <div class="do-box">
+            <ul><li>Start a new Cloud Agent.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/plan the collections command center from its open Linear issues. List the tasks, the files each touches, and the open questions.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="get-command-center-issues">
+          <h4>Get the issues for the collections command center from the issue tracker.</h4>
+          <p class="say">The Linear MCP server returns a list of nine issues to create the collections command center.</p>
+          <div class="do-box">
+            <ul><li>Start a new local agent.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/ask List open issues for the collections command center in Linear.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="plan-command-center">
+          <h4>Plan the collections command center in a separate agent.</h4>
+          <p class="say">We are going to run this first and handle the manual part in parallel. This agent only plans. It builds nothing until we come back to it.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/plan the collections command center from its issues. List the tasks, the files each touches, and the open questions.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="open-local-agent">
+          <h4>Start a keyboard walkthrough for the accessibility audit in a new agent.</h4>
+          <div class="do-box">
+            <ul><li>Start a new local agent for the keyboard walkthrough.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="show-problem-by-hand">
+          <h4>Show the problem by hand.</h4>
+          <p class="say">Focus is the control the keyboard is on right now. When you press Tab, focus moves to the next button, link, or field. A visible outline usually shows where it is, so a keyboard user always knows what Enter will do.
+Pressing Tab repeatedly is a slow manual process. Is there a way we can automate this?</p>
+          <div class="do-box">
+            <ol><li>Open Browser to http://localhost:43173/invoices.</li><li>Press Tab a few times on the invoices page.</li></ol>
+          </div>
+        </article>
+        <article class="beat" data-beat="create-accessibility-manual-reviewer">
+          <h4>Build a subagent to help automate the manual process.</h4>
+          <p class="say">CI catches missing labels, which break screen readers, and low contrast, which makes text hard to read.
+A keyboard walkthrough takes judgment, so this subagent uses the page the way a keyboard user would. Reuse it any time you change the UI.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/create-subagent accessibility-manual-reviewer that walks pages by keyboard in the Browser, since CI runs automated tests. Report tab order, focus, trap, Escape, and navigation failures with screenshots. Set model: fast, readonly: false.</pre>
+          </div>
+          <div class="do-box">
+            <ul><li>npm run demo:session -- record project-path .cursor/agents/accessibility-manual-reviewer.md</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="start-audit-agent">
+          <h4>Start a new agent to audit accessibility.</h4>
+          <p class="say">A new agent keeps the audit separate from the command center plan.</p>
+          <div class="do-box">
+            <ul><li>Start a new local agent.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="multitask-walkthroughs">
+          <h4>Show /multitask for small coordinated jobs.</h4>
+          <p class="say">The coordinator gives each task its own subagent: a keyboard walkthrough of the invoices page, the accessibility test suite, and the application test suite.</p>
+          <div class="do-box">
+            <ul><li>Open Browser to http://localhost:43173/invoices.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/multitask Split into three subagents: accessibility-manual-reviewer checks @components/notice-bell.tsx on the invoices page (click, Tab once, Escape, stop at one failure), one runs accessibility tests, one runs app tests.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="review-subagents">
+          <h4>Review the subagents.</h4>
+          <p class="say">Stop one task if it drifts. When each agent completes, you get a set of recommendations.</p>
+          <div class="do-box">
+            <ul><li>Watch the Working indicator above the chat box.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="summarize-subagents">
+          <h4>Check the output of the subagents.</h4>
+          <p class="say">The coordinator summarizes the failures from the keyboard walkthrough of the invoices page, the accessibility test suite, and the application test suite.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Give me a one-sentence summary for each subagent.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="linear-issue-fallback">
+          <h4>Fallback: reference repo issues</h4>
+          <div class="do-box">
+            <ul><li>If an agent cannot access the Linear MCP server, use the issue descriptions in the repository.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Reference issues from @runbooks/linear-field-demos.ts instead of Linear.</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="301-plan-to-code">
+        <h3>How do you go from plan to code?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="optional-start-project" data-feature="Projects">
+          <h4>Start a new Project.</h4>
+          <p class="say">Starting a new Project creates a long-running Cloud Agent that acts as a coordinator.
+Run the remaining commands in the Project. Note that responses to prompts may differ from responses in an individual agent.</p>
+          <div class="do-box">
+            <ol><li>Start a new Project.</li><li>Name it {{ INSERT COMPANY HERE, default is Ledgerly }}.</li></ol>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-stage-project" data-feature="Projects">
+          <h4>Stage the Project.</h4>
+          <p class="say">Make clear to the Project that each agent runs in its own worktree to isolate work and avoid conflicts.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Run each agent in its own worktree to avoid conflicts, and parallelize where possible.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-assign-project" data-feature="Projects">
+          <h4>Use Projects to assign tasks to agents.</h4>
+          <p class="say">Let Projects decide how best to assign tasks and complete work.</p>
+          <div class="do-box">
+            <ul><li>Run the remaining prompts in this demo section from the Project without starting new agents.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="open-plan-agent">
+          <h4>Start a new agent.</h4>
+          <p class="say">I want to fix the keyboard findings that do not share a file.</p>
+          <div class="do-box">
+            <ul><li>Open a new local agent.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="plan-remediation">
+          <h4>Start a plan to fix the walkthrough failures on a separate worktree.</h4>
+          <p class="say">Plan the in-scope findings, one task per finding, each on its own worktree. If the plan asks questions, choose to run tasks in parallel and write updates to the issue tracker.
+By starting the work on a separate worktree, you avoid editing the working code on the main branch. If you do not let the agent automatically approve changes on the worktree, you may have to manually approve each file change.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/plan the in-scope keyboard fixes in @.cursor/plans/keyboard-walkthrough-audit.md. One task per finding, in parallel, each on its own worktree with auto-approved changes.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="review-plan">
+          <h4>Review the plan.</h4>
+          <p class="say">The plan assigns tasks to workers and notes which ones run in parallel.</p>
+          <div class="do-box">
+            <ul><li>Review the plan.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="build-plan">
+          <h4>Build the plan.</h4>
+          <div class="do-box">
+            <ul><li>Click Build Locally.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-build-cloud" data-feature="Cloud Agents">
+          <h4>Use Cloud Agents to build the plan if you do not have Projects.</h4>
+          <div class="do-box">
+            <ul><li>Build the plan with Cloud Agents.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="side-chat">
+          <h4>Ask a side question while the coordinator remediates the findings.</h4>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/side</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="ask-subagent-progress">
+          <h4>Ask what the first subagent is remediating.</h4>
+          <p class="say">If you want to know what a subagent is doing, you can open a side chat and ask without blocking the coordinator.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/ask What is the first subagent remediating? Answer with the finding and the files it changes.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="consolidate-pr">
+          <h4>Consolidate and open a reviewable PR.</h4>
+          <p class="say">Move finished worktrees back deliberately. Resolve conflicts on purpose.</p>
+          <div class="do-box">
+            <ul><li>Open the PR. Show the summary a coworker would read first.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Consolidate the completed tasks into one branch so reviewers get one PR. Open a PR with what each task changed and what a human should verify.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-project-notes" data-feature="Projects">
+          <h4>Keep track of the Project.</h4>
+          <p class="say">As you continue working on the Project, it keeps track of your requests to agents.
+You can review tasks in project notes and shared files in context.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Show me the project notes and context.</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="301-scale-review">
+        <h3>How do you scale review?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="checkout-fixes-branch">
+          <h4>Start a new agent.</h4>
+          <p class="say">With many lines of accessibility fixes in this PR, I want to identify the most important files to review.</p>
+          <div class="do-box">
+            <ul><li>Open a new local agent.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Check out the branch for the keyboard fixes PR.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="run-reviewer-subagent">
+          <h4>Run the change reviewer subagent before you conduct manual review.</h4>
+          <p class="say">The change reviewer uses readonly: false so it can run git diff, but its instructions stop it from editing files. The reviewer and the author stay separate.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Use the change reviewer subagent to review the remediation PR. List each issue with its file, line, and severity.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="check-closer-inspection">
+          <h4>Identify any changes requiring closer inspection.</h4>
+          <p class="say">The plan includes a step that sounds reasonable but blocks Tab navigation everywhere. The change reviewer flags it as high severity, with the file and line, so we never keep it.</p>
+          <div class="do-box">
+            <ul><li>Check the change reviewer’s output for any issues requiring closer inspection.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Fix the findings from the change reviewer.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="review-highest-risk">
+          <h4>Review the high-risk changes.</h4>
+          <p class="say">The change reviewer subagent clears the noise so your time goes where judgment matters.</p>
+          <div class="do-box">
+            <ul><li>Open the highest-risk change and read it line by line.</li></ul>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/ask Which change in this PR has the highest risk? List the files and lines I need to review.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-bugbot" data-feature="Bugbot">
+          <h4>Run Bugbot.</h4>
+          <p class="say">Run Bugbot to check for code quality. Review its suggestions for changes.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>/review-bugbot this remediation PR</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section id="301-share-ownership">
+        <h3>How do you share ownership safely?</h3>
+        <div class="beats">
+        <article class="beat" data-beat="open-ownership-agent">
+          <h4>Start a new agent.</h4>
+          <p class="say">I want to turn some of the review findings in this PR into the most reliable fix: a rule, skill, subagent, test, or human check.</p>
+          <div class="do-box">
+            <ul><li>Open a new local agent.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="shift-left-findings">
+          <h4>Identify the most reliable fix for each review finding.</h4>
+          <p class="say">You choose which ones to turn into a rule, skill, subagent, test, or human check for your coworkers to reuse.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Turn repeat findings from this PR&#39;s review comments and change reviewer into reusable fixes so they stop recurring. Draft the most deterministic fix for each: a rule, skill, subagent, test, or human check.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-reviewer-automation" data-feature="Automations">
+          <h4>Create an Automation.</h4>
+          <div class="do-box">
+            <ol><li>Go to the Automations tab.</li><li>Click New Automation.</li><li>Name it Reviewer.</li><li>Select the demo repository.</li><li>Click Triggers &gt; PR opened, then select the demo repository and set the author to Anyone.</li><li>Add “Use the change reviewer subagent to review this PR and comment with each issue&#39;s file, line, and severity.” to agent instructions.</li><li>Add “Comment on Pull Request” to tools.</li><li>Click Save.</li></ol>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-trigger-automation" data-feature="Automations">
+          <h4>Trigger the PR Automation.</h4>
+          <p class="say">Opening any PR triggers the Reviewer Automation, so I&#39;ll create one and watch the check run.</p>
+          <div class="do-box">
+            <ol><li>Start a new local agent.</li><li>Open the PR for the accessibility test suite fixes and review the status check for Automation: Reviewer.</li></ol>
+          </div>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Run the accessibility test suite and fix its failures on a separate worktree. Open a PR when done.</pre>
+          </div>
+        </article>
+        <article class="beat" data-beat="return-to-plan">
+          <h4>Return to the collections command center plan.</h4>
+          <p class="say">Now I’m going back to the collections command center plan. Before I start the work, I’ll check the keyboard fixes PR for conflicts.</p>
+          <div class="do-box">
+            <ul><li>Open the command center planning agent in the Agent Window. Don’t start a new plan.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="optional-cloud-return" data-feature="Cloud Agents">
+          <h4>Instead, open the command center planning agent from the Cloud Agents list.</h4>
+          <div class="do-box">
+            <ul><li>Instead, open the command center planning agent from the Cloud Agents list.</li></ul>
+          </div>
+        </article>
+        <article class="beat" data-beat="list-conflict-files">
+          <h4>Check other PRs for files and comments that conflict with the next project.</h4>
+          <p class="say">Use the context in other PRs to identify possible conflicts before you start work.</p>
+          <div class="paste">
+            <div class="paste-head">
+              <span>Paste in Grok Build</span>
+              <button type="button" class="copy">Copy</button>
+            </div>
+            <pre>Review the open PRs in this repository and flag any that have file conflicts or comments that may affect the collections command center feature.</pre>
+          </div>
+        </article>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var select = document.getElementById("track");
+      var tracks = Array.prototype.slice.call(document.querySelectorAll(".track"));
+      var ids = tracks.map(function (el) { return el.getAttribute("data-track"); });
+
+      function show(id, updateUrl) {
+        if (ids.indexOf(id) === -1) id = ids[0];
+        select.value = id;
+        tracks.forEach(function (el) { el.hidden = el.getAttribute("data-track") !== id; });
+        document.title = "Runbooks · " + id;
+        if (updateUrl) {
+          try {
+            var url = new URL(window.location.href);
+            url.searchParams.set("track", id);
+            url.hash = "";
+            history.replaceState(null, "", url.toString());
+          } catch (err) {
+            // Canvas srcdoc pages cannot update their about:srcdoc URL.
+          }
+          if (window.parent !== window) {
+            window.parent.postMessage({ type: "runbooks:track", track: id }, "*");
+          }
+        }
+      }
+
+      var params = new URLSearchParams(window.location.search);
+      var fromHash = window.location.hash.slice(1).split("-")[0];
+      show(params.get("track") || (ids.indexOf(fromHash) !== -1 ? fromHash : ids[0]), false);
+      if (window.location.hash) {
+        var target = document.getElementById(window.location.hash.slice(1));
+        if (target) target.scrollIntoView();
+      }
+      select.addEventListener("change", function () { show(select.value, true); });
+
+      function catalogOptions() {
+        return Array.prototype.map.call(select.options, function (opt) { return opt.value; });
+      }
+      function postCatalog() {
+        if (window.parent === window) return;
+        window.parent.postMessage({
+          type: "runbooks:catalog",
+          options: catalogOptions(),
+          visibleTrack: select.value,
+        }, "*");
+      }
+      function applyFeatures(state) {
+        if (!state || typeof state !== "object") return;
+        Array.prototype.forEach.call(document.querySelectorAll(".feature-toggle"), function (box) {
+          var trackId = box.getAttribute("data-track");
+          var featureName = box.getAttribute("data-feature");
+          var trackState = state[trackId] || {};
+          box.checked = trackState[featureName] !== false;
+        });
+      }
+      function collectFeatures() {
+        var state = {};
+        Array.prototype.forEach.call(document.querySelectorAll(".feature-toggle"), function (box) {
+          var trackId = box.getAttribute("data-track");
+          var featureName = box.getAttribute("data-feature");
+          if (!state[trackId]) state[trackId] = {};
+          if (!box.checked) state[trackId][featureName] = false;
+        });
+        return state;
+      }
+      function postFeatures() {
+        if (window.parent === window) return;
+        window.parent.postMessage({ type: "runbooks:features", features: collectFeatures() }, "*");
+      }
+
+      window.addEventListener("message", function (event) {
+        var data = event.data;
+        if (event.source !== window.parent || !data) return;
+        if (
+          data.type === "runbooks:set-track" &&
+          typeof data.track === "string" &&
+          ids.indexOf(data.track) !== -1
+        ) {
+          show(data.track, false);
+          postCatalog();
+        }
+        if (data.type === "runbooks:set-features" && data.features && typeof data.features === "object") {
+          applyFeatures(data.features);
+        }
+      });
+
+      var FEATURE_KEY = "ledgerly-runbooks-optional-features";
+      function readFeatures() {
+        try {
+          var raw = localStorage.getItem(FEATURE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (err) {
+          return {};
+        }
+      }
+      function writeFeatures(state) {
+        try {
+          localStorage.setItem(FEATURE_KEY, JSON.stringify(state));
+        } catch (err) {
+          // Private browsing can reject storage. The checkbox still toggles.
+        }
+      }
+      var savedFeatures = readFeatures();
+      applyFeatures(savedFeatures);
+      Array.prototype.forEach.call(document.querySelectorAll(".feature-toggle"), function (box) {
+        var trackId = box.getAttribute("data-track");
+        box.addEventListener("change", function () {
+          var state = readFeatures();
+          if (!state[trackId]) state[trackId] = {};
+          var featureName = box.getAttribute("data-feature");
+          if (box.checked) delete state[trackId][featureName];
+          else state[trackId][featureName] = false;
+          writeFeatures(state);
+          postFeatures();
+        });
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var ok = document.execCommand("copy");
+        document.body.removeChild(area);
+        return ok ? Promise.resolve() : Promise.reject();
+      }
+
+      document.addEventListener("click", function (event) {
+        var button = event.target.closest(".copy");
+        if (!button) return;
+        var text = button.closest(".paste").querySelector("pre").textContent;
+        var write = navigator.clipboard && window.isSecureContext
+          ? navigator.clipboard.writeText(text).catch(function () { return fallbackCopy(text); })
+          : fallbackCopy(text);
+        write.then(function () {
+          button.textContent = "Copied";
+          button.classList.add("done");
+          setTimeout(function () { button.textContent = "Copy"; button.classList.remove("done"); }, 1600);
+        }, function () {});
+      });
+    })();
+  </script>
+</body>
+</html>

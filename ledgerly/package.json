@@ -14,9 +14,13 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:a11y": "vitest run --config vitest.a11y.config.ts",
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
-    "db:reset": "prisma db push --force-reset && prisma db seed"
+    "db:reset": "prisma db push --force-reset && prisma db seed",
+    "demo:session": "tsx scripts/demo-reset.ts",
+    "demo:reset": "tsx scripts/demo-reset.ts reset",
+    "runbooks:export": "tsx scripts/export-runbooks.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -29,7 +33,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.33.0",
-    "next": "16.3.8",
+    "next": "16.4.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "recharts": "^3.10.1",

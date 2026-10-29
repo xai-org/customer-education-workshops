@@ -2,7 +2,7 @@ export const PROJECT_AGENTS = [
   {
     name: "ledgerly-reviewer",
     path: ".cursor/agents/ledgerly-reviewer.md",
-    when: "After any code change. Read-only check that the work exists and runs, then catalog prices, seed names, protected paths, and high-risk changes.",
+    when: "After any code change. Read-only check that the work exists and runs, then catalog prices, seed names, and protected paths.",
   },
   {
     name: "api-instrumenter",
@@ -13,6 +13,16 @@ export const PROJECT_AGENTS = [
     name: "dispute-verifier",
     path: ".cursor/agents/dispute-verifier.md",
     when: "/goal and /orchestrate finish line. Report pass/fail evidence; write no product code.",
+  },
+  {
+    name: "change-reviewer",
+    path: ".cursor/agents/change-reviewer.md",
+    when: "Diff review with readonly: false so it can run git status and git diff. Its instructions forbid edits. Flags sensitive data, hard rollback, missing tests, edited failing tests, scope outside the plan, and new dependencies or shell commands.",
+  },
+  {
+    name: "preflight-checker",
+    path: ".cursor/agents/preflight-checker.md",
+    when: "Before a 101, 201, or 301 session. Reports pass / fail / blocked per track dependency. readonly: false so it can run shell probes; its instructions forbid edits, install, seed, stage-linear, and mcp_auth unless asked to remediate.",
   },
 ] as const;
 
@@ -25,7 +35,7 @@ export const PROJECT_SKILLS = [
   {
     name: "stage-linear",
     path: ".cursor/skills/stage-linear/SKILL.md",
-    when: "Reconcile Fieldnote issues on the private ce-field-demos Linear project.",
+    when: "Reconcile Fieldnote issues on the ce-field-demos Linear project. Public and private teams and projects are both valid.",
   },
   {
     name: "standard-bug-fix",

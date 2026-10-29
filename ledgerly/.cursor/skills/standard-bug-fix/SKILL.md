@@ -11,9 +11,9 @@ Work one Linear issue from the operator’s **ce-field-demos** project. Do not e
 
 Call **Linear** MCP (authenticate if needed):
 
-1. `list_projects` query `ce-field-demos` — use the project whose team is the operator’s private field-demos team, not a public or shared team.
+1. `list_projects` query `ce-field-demos` — use the project on the confirmed team. Public and private teams are both valid. Public and private projects are both valid.
 2. `list_issues` on that project, or `get_issue` when the user passed an identifier (for example `CE-16`).
-3. Match `FIELD_DEMO_ISSUES` titles in `lib/runbooks/linear-field-demos.ts` when the user passed a title instead of an ID.
+3. Match `FIELD_DEMO_ISSUES` titles in `runbooks/linear-field-demos.ts` when the user passed a title instead of an ID.
 
 If Linear MCP is missing, tell the operator to add Linear from the marketplace and to run `stage-linear` if the project is empty.
 
