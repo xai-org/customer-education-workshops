@@ -380,7 +380,8 @@ function resetGit(event: SessionEvent, report: Report) {
   const worktrees = listWorktrees();
   const primary = worktrees[0];
   if (!primary) throw new Error("Refusing to reset without a worktree.");
-  if (resolve(primary.path) !== root) {
+  const checkout = command("git", ["rev-parse", "--show-toplevel"]).trim();
+  if (resolve(primary.path) !== resolve(checkout)) {
     throw new Error(
       `Refusing to reset from linked worktree ${root}. Run npm run demo:reset from the main checkout at ${primary.path}.`,
     );

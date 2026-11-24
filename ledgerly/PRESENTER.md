@@ -45,6 +45,6 @@ Do not read prompts aloud. State the intent, paste from the card, then say what 
 
 ## Reset
 
-Run `npm run demo:reset` first. Complete only the MCP cleanup the script reports. Use `npm run db:reset` only to reload data.
+Run `cd ledgerly && npm run demo:reset` first. Run it from `ledgerly/`, not the workspace root. Complete only the MCP cleanup the script reports. Use `npm run db:reset` only to reload data.
 
 Expected test output on a clean tree is in `README.md`. One failure is intentional.

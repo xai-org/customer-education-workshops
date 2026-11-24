@@ -5,9 +5,10 @@ description: Run the scripted Ledgerly demo reset first, then complete only the 
 
 # Reset the demo state
 
-Run the script first. It is the source of truth for every step that can be scripted.
+Run the script first. It is the source of truth for every step that can be scripted. Run it from `ledgerly/` (the workspace root has no `package.json` and is not supported).
 
 ```bash
+cd ledgerly
 npm run demo:reset
 npm run demo:reset -- --dry-run
 ```

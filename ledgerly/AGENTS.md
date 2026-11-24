@@ -63,7 +63,7 @@ Do not `save_project` onto a team the operator did not confirm. Do not add a loc
 
 ### Demo reset
 
-For any reset request, run `npm run demo:reset` first. It resets everything it knows about — there is no 101-only, 201-only, or 301-only reset. The `reset-demo-state` skill handles only its reported MCP/discovery leftovers. When a demo beat creates a new leftover, update its session event record and `scripts/demo-reset.ts` in the same change.
+For any reset request, run `cd ledgerly && npm run demo:reset` first. The workspace root is not supported: it has no `package.json`, and the script must run from `ledgerly/`. It resets everything it knows about — there is no 101-only, 201-only, or 301-only reset. The `reset-demo-state` skill handles only its reported MCP/discovery leftovers. When a demo beat creates a new leftover, update its session event record and `scripts/demo-reset.ts` in the same change.
 
 ### Tests
 
